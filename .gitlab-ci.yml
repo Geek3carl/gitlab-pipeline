@@ -3,7 +3,7 @@ default:
       - java8
 image: $CI_REGISTRY/ops/qsc-maven:ali-v3
 include:
-  - project: 'ops/gitlabci-templates'
+  - project: 'dev-ops/gitlabci-templates'
     ref: main
     file: 
       - 'docker-login.yml'
