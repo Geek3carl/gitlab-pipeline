@@ -1,0 +1,20 @@
+stages:
+  - test
+  - deploy
+
+# 示例任务，仅允许特定用户角色触发
+test_job:
+  stage: test
+  script:
+    - echo "This is a test job"
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "test"'
+      allowed_user_roles: ["Maintainer", "Developer"]
+
+deploy_job:
+  stage: deploy
+  script:
+    - echo "Deploying to production"
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^main-\d{8}$/'
+      allowed_user_roles: ["Maintainer"]
