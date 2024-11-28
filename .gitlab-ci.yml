@@ -1,0 +1,28 @@
+default:
+    tags:
+      - java8
+image: $CI_REGISTRY/ops/gbjk-maven:ali-v3
+include:
+  - project: 'ops/gitlabci-templates'
+    ref: main
+    file: 
+      - 'docker-login.yml'
+      - 'maven-package.yaml'
+      - 'k8s-build-image.yaml'
+
+stages:
+  - package
+  - k8s-build-image
+
+variables:
+  MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+
+# cache:
+#   paths:
+#     - target/
+
+clean:
+  stage: .pre
+  script: mvn clean -U

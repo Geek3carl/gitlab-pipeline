@@ -1,0 +1,16 @@
+maven-package:
+  stage: package
+  script:
+    - mvn package -DskipTests
+    - pwd && ls -hl ./* 
+  artifacts:
+    expire_in: 50 min
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    when: on_success
+    untracked: false
+    paths:
+      - target/
+  only:
+    - master
+    - test
+    - dev

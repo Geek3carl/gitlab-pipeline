@@ -1,0 +1,13 @@
+restart-docker:
+  stage: restart-docker
+  script:
+    - docker rm -f $CI_PROJECT_NAME-$CI_COMMIT_BRANCH
+    - docker run -it --name $CI_PROJECT_NAME-$CI_COMMIT_BRANCH 
+      --restart always 
+      -v /data/code/backend/logs:/data/code/backend/logs  
+      -v /data/code/backend/upload:/data/code/backend/upload
+      -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro 
+      -p $HOSTPORT:$CONTAINER_PORT 
+      -d $CI_REGISTRY/java/$CI_PROJECT_NAME:$CI_COMMIT_BRANCH-$CI_COMMIT_SHORT_SHA bash
+    - sleep 3
+    - docker ps -a|grep $CI_PROJECT_NAME-$CI_COMMIT_BRANCH

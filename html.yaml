@@ -1,0 +1,15 @@
+html-package:
+  stage: package
+  script:
+    - pwd && ls -hl ./* 
+  artifacts:
+    expire_in: 5 min
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    when: on_success
+    untracked: false
+    paths:
+      - ./
+  only:
+    - master
+    - test
+    - dev

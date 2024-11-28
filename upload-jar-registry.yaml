@@ -1,0 +1,17 @@
+upload-jar:
+  stage: upload-jar
+  script: 
+    - ls -1 target/*.jar
+    - VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+    - echo $VERSION
+    - mvn deploy:deploy-file
+      -Durl=http://maven.gbyj.com/repository/maven-snapshots
+      -DrepositoryId=maven-snapshots
+      -DgroupId=com.gbjk.common
+      -DartifactId=gbjk-common
+      -Dpackaging=jar
+      -Dversion=$VERSION
+      -Dusername=admin
+      -Dpassword=$NEXUS_PASS
+      -Dfile=target/$CI_PROJECT_NAME-$VERSION.jar
+
