@@ -7,8 +7,8 @@ upload-jar:
     - mvn deploy:deploy-file
       -Durl=http://maven.gbyj.com/repository/maven-snapshots
       -DrepositoryId=maven-snapshots
-      -DgroupId=com.gbjk.common
-      -DartifactId=gbjk-common
+      -DgroupId=com.qsc.common
+      -DartifactId=qsc-common
       -Dpackaging=jar
       -Dversion=$VERSION
       -Dusername=admin
