@@ -5,7 +5,7 @@ upload-jar:
     - VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
     - echo $VERSION
     - mvn deploy:deploy-file
-      -Durl=http://maven.gbyj.com/repository/maven-snapshots
+      -Durl=http://maven.qschou.com/repository/maven-snapshots
       -DrepositoryId=maven-snapshots
       -DgroupId=com.qsc.common
       -DartifactId=qsc-common
