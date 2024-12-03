@@ -1,6 +1,6 @@
 default:
     tags:
-      - java8
+      - jdk8 
 image: $CI_REGISTRY/ops/qsc-maven:ali-v3
 include:
   - project: 'opertations/gitlabci-templates'
@@ -17,11 +17,6 @@ stages:
 variables:
   MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
-
-
-# cache:
-#   paths:
-#     - target/
 
 clean:
   stage: .pre
