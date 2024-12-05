@@ -3,11 +3,9 @@ deploy-to-test:
   script:
     - echo -e "\e[32mDeploying to TEST Environment\e[0m"
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "test" || ($CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_TAG =~ /^prod-/)'
+    - if: '$CI_COMMIT_REF_NAME == "test" || $CI_COMMIT_TAG =~ /^test-\d{8}/'
       when: always
     - when: never
-  only:
-    - test
 
 #  rules:
 #    - if: '$CI_COMMIT_REF_NAME == "test"'
@@ -19,7 +17,7 @@ deploy-to-production:
   script:
     - echo -e "\e[1;31mDeploying to production Environment\e[0m"
   rules:
-    #- if: '$CI_COMMIT_TAG =~ /^main-\d{8}$/'
-    - if: '$CI_COMMIT_REF_NAME == "main"'
+    #- if: '$CI_COMMIT_TAG =~ /^prod-\d{8}$/ && $CI_PIPELINE_SOURCE == "trigger" '
+    - if: '$CI_COMMIT_REF_NAME == "main" &&  $CI_PIPELINE_SOURCE == "web"'
       when: manual
     - when: never
