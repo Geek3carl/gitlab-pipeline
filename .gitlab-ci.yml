@@ -21,3 +21,4 @@ variables:
 clean:
   stage: .pre
   script: mvn clean -U
+  timeout: 1m
