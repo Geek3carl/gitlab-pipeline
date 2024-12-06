@@ -6,12 +6,6 @@ deploy-to-test:
     - if: '$CI_COMMIT_REF_NAME == "test" || $CI_COMMIT_TAG =~ /^test-\d{8}/'
       when: always
     - when: never
-
-#  rules:
-#    - if: '$CI_COMMIT_REF_NAME == "test"'
-#      when: always
-#    - when: never
-
 deploy-to-production:
   stage: deploy
   script:
