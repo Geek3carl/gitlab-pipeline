@@ -1,7 +1,7 @@
 rsyncfile:
   stage: rsyncfile
   image: 
-    name: $CI_REGISTRY/ops/fedora:gbyj-38
+    name: $CI_REGISTRY/ops/fedora:qscchou-38
   script:
     - docker rm -f $CI_PROJECT_NAME-$CI_COMMIT_BRANCH
     - docker run -it --name $CI_PROJECT_NAME-$CI_COMMIT_BRANCH  -v /data/code/front/$CI_PROJECT_NAME:/data/code/front/$CI_PROJECT_NAME  -d $CI_REGISTRY/nodejs/node:18 bash
