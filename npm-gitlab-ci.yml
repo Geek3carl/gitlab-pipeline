@@ -2,6 +2,7 @@ default:
   tags:
     - nodejs18 
 image: $CI_REGISTRY/ops/npm-node:latest
+timeout: 3m
 include:
   - project: 'opertations/gitlabci-templates'
     ref: main

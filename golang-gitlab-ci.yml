@@ -3,6 +3,7 @@ default:
     - go1.13 
 #image: reg.qschou.com/ops/golang:1.13.15 #特别需求可指定镜像
 image: $CI_REGISTRY/ops/qsc-maven:ali-v3
+timeout: 3m
 include:
   - project: 'opertations/gitlabci-templates'
     ref: main

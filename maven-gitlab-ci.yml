@@ -2,6 +2,7 @@ default:
     tags:
       - jdk8 
 image: $CI_REGISTRY/ops/qsc-maven:ali-v3
+timeout: 3m
 include:
   - project: 'opertations/gitlabci-templates'
     ref: main
