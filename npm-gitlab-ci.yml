@@ -1,0 +1,25 @@
+default:
+  tags:
+    - nodejs18 
+image: $CI_REGISTRY/ops/npm-node:latest
+include:
+  - project: 'opertations/gitlabci-templates'
+    ref: main
+    file:
+      - 'docker-login.yml'
+      - 'npm-package.yaml'
+      - 'k8s-build-image.yaml'
+
+stages:
+  - package
+  - build-k8s-image
+
+variables:
+  NPM_REGISTRY: "https://registry.npm.taobao.org"
+  CI_PROJECT_DIST: "dist"
+
+clean:
+  stage: .pre
+  script:
+    - npm cache clean --force
+  timeout: 1m
