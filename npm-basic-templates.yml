@@ -4,6 +4,7 @@
     - npm cache clean --force
     - npm i -g cnpm -registry=$NPM_REGISTRY
     - npm i --force
+  timeout: 3m
   artifacts:
     when: on_success
     paths:

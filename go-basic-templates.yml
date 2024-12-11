@@ -3,6 +3,7 @@
   script:
     - go build -o $CI_JOB_NAME  -a -installsuffix cgo ./app
     - pwd && ls -hl ./*
+  timeout: 3m
   artifacts:
     untracked: false
     paths:
@@ -18,6 +19,7 @@
     - go mod vendor 
     - go build -o ./ -a -installsuffix cgo ./
     - pwd && ls -hl ./*
+  timeout: 3m
   artifacts:
     untracked: false
     paths:
