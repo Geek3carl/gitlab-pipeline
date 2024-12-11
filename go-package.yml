@@ -15,6 +15,7 @@ golang-package-test:
 
 golang-package-prod:
   extends: .golang-mod-package
+  stage: package
   script:
     - echo -e "\e[35m--------测试环境构建--------\e[0m"
   artifacts:
