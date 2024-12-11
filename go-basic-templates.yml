@@ -14,7 +14,7 @@
 .golang-mod-package:
   stage: package
   script:
-    - go build -o / ./app
+    - go build -o $CI_JOB_NAME / ./app
     - go mod tidy 
     - go mod vendor 
     - go build -o ./ -a -installsuffix cgo ./
