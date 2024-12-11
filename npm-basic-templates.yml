@@ -1,0 +1,13 @@
+.default-npm-package:
+  stage: package
+  script:
+    - npm cache clean --force
+    - npm i -g cnpm -registry=$NPM_REGISTRY
+    - npm i --force
+  artifacts:
+    when: on_success
+    paths:
+      - $CI_PROJECT_DIST
+    untracked: false
+  rules:
+    - when: never
