@@ -1,0 +1,27 @@
+default:
+  tags:
+    - go1.13 
+#image: reg.qschou.com/ops/golang:1.13.15 #特别需求可指定镜像
+image: $CI_REGISTRY/ops/qsc-maven:ali-v3
+include:
+  - project: 'opertations/gitlabci-templates'
+    ref: main
+    file: 
+      - 'docker-login.yml'
+      - 'go-package.yaml'
+      - 'k8s-build-image.yaml'
+stages:
+  - package
+  - build-k8s-image
+
+variables:
+  GO111MODULE: "on"
+  GOPROXY: "https://proxy.golang.org,direct"
+  GOMODCACHE: "$CI_PROJECT_DIR/.gomodcache"
+  GOBIN: "$CI_PROJECT_DIR/.gobin"
+
+clean:
+  stage: .pre
+  script:
+    - go clean -modcache
+  timeout: 10s 
