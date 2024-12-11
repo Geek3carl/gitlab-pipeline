@@ -2,6 +2,8 @@ include:
   - local: 'go-basic-templates.yml'
 golang-package-test:
   extends: .default-golang-package
+  script:
+    - echo "This is a valid job"
   artifacts:
     expire_in: 10 min
     name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
@@ -12,6 +14,8 @@ golang-package-test:
 
 golang-package-prod:
   extends: .golang-mod-package
+  script:
+    - echo "This is a valid job"
   artifacts:
     expire_in: 90 min
     name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
