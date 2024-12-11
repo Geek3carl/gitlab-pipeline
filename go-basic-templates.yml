@@ -1,0 +1,27 @@
+.default-golang-package:
+  stage: package
+  script:
+    - go build -o / ./app
+    - pwd && ls -hl ./*
+  artifacts:
+    untracked: false
+    paths:
+      - /
+    when: on_success
+  rules:
+    - when: never
+.golang-mod-package:
+  stage: package
+  script:
+    - go build -o / ./app
+    - go mod tidy 
+    - go mod vendor 
+    - go build -o ./ -a -installsuffix cgo ./
+    - pwd && ls -hl ./*
+  artifacts:
+    untracked: false
+    paths:
+      - /
+    when: on_success
+  rules:
+    - when: never
