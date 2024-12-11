@@ -1,5 +1,3 @@
-include:
-  - local: 'go-basic-templates.yml'
 golang-package-test:
   stage: package
   script:
