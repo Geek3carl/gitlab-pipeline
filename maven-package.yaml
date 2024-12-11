@@ -1,16 +1,38 @@
-maven-package:
+maven-package-test:
   stage: package
   script:
-    - mvn package -DskipTests
+    - mvn clean package -Dmaven.test.skip=true -P test 
     - pwd && ls -hl ./* 
   artifacts:
-    expire_in: 50 min
+    expire_in: 10 min
     name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
     when: on_success
     untracked: false
     paths:
       - target/
-  only:
-    - master
-    - test
-    - dev
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "test" || $CI_COMMIT_TAG =~ /^test-\d{8}/'
+      when: always
+    - when: never
+maven-package-prod:
+  stage: package
+  script:
+    - mvn clean package -Dmaven.test.skip=true -P prod 
+    - pwd && ls -hl ./* 
+  artifacts:
+    expire_in: 90 min
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    when: on_success
+    untracked: false
+    paths:
+      - target/
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^prod-v\d+\.\d+\.\d+$/ && $CI_PIPELINE_SOURCE == "trigger" '
+      when: manual
+    - when: never
+  release:
+    tag_name: $CI_COMMIT_TAG
+    ref: $CI_COMMIT_REF_NAME
+    name: "Release for $CI_COMMIT_TAG"
+    description: |
+      $(cat RELEASE_NOTES.md)
