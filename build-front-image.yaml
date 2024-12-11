@@ -2,10 +2,13 @@ build-front-image:
   stage: build-front-image
   script:
     - time=$(date +%Y%m%d%H%M%S)
-    - docker build -t $CI_REGISTRY/$CI_PROJECT_ROOT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_BRANCH-$CI_COMMIT_SHORT_SHA-$time .
-    - docker push $CI_REGISTRY/$CI_PROJECT_ROOT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_BRANCH-$CI_COMMIT_SHORT_SHA-$time
+    - tag=${CI_COMMIT_TAG:-$CI_COMMIT_BRANCH}
+    - docker build -t $CI_REGISTRY/$CI_PROJECT_ROOT_NAMESPACE/$CI_PROJECT_NAME:$tag-$CI_COMMIT_SHORT_SHA-$time .
+    - docker push $CI_REGISTRY/$CI_PROJECT_ROOT_NAMESPACE/$CI_PROJECT_NAME:$tag-$CI_COMMIT_SHORT_SHA-$time
     - docker images
-  only:
-    - master
-    - test
-    - dev
+  rules:
+    - when: on_success 
+#  only:
+#    - master
+#    - test
+#    - dev
