@@ -5,3 +5,4 @@ build-image:
     - docker build -t $CI_REGISTRY/$CI_PROJECT_ROOT_NAMESPACE/$CI_PROJECT_NAME:$tag-$CI_COMMIT_SHORT_SHA .
     - docker push $CI_REGISTRY/$CI_PROJECT_ROOT_NAMESPACE/$CI_PROJECT_NAME:$tag-$CI_COMMIT_SHORT_SHA
     - docker images
+  timeout: 3m

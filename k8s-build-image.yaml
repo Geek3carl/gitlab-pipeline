@@ -6,5 +6,6 @@ build-k8s-image:
     - docker build -t $CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$tag-$CI_COMMIT_SHORT_SHA-$time .
     - docker push $CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$tag-$CI_COMMIT_SHORT_SHA-$time
     - docker images
+  timeout: 3m
   rules:
     - when: on_success 
