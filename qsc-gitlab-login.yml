@@ -1,2 +1,4 @@
 before_script:
-  - git config --global url."https://$CI_USERNAME:$CI_PASSWORD@code.qschou.com".insteadOf "https://code.qschou.com"
+  - git config --global url."https://${CI_USERNAME}:${CI_PASSWORD}@code.qschou.com".insteadOf "https://code.qschou.com" 
+  - git config --global --get-regexp "url.*insteadOf"
+  - git ls-remote https://code.qschou.com/Enterprise/ebao-go-common.git
