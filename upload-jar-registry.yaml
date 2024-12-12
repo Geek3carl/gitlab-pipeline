@@ -4,14 +4,14 @@ upload-jar:
     - ls -1 target/*.jar
     - VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
     - echo $VERSION
-    - mvn deploy:deploy-file
-      -Durl=http://maven.qschou.com/repository/maven-snapshots
-      -DrepositoryId=maven-snapshots
-      -DgroupId=com.qsc.common
-      -DartifactId=qsc-common
-      -Dpackaging=jar
-      -Dversion=$VERSION
-      -Dusername=admin
-      -Dpassword=$NEXUS_PASS
-      -Dfile=target/$CI_PROJECT_NAME-$VERSION.jar
-
+    - |
+      mvn deploy:deploy-file \
+        -Durl=http://maven.qschou.com/repository/maven-snapshots \
+        -DrepositoryId=maven-snapshots \
+        -DgroupId=com.qsc.common \
+        -DartifactId=qsc-common \
+        -Dpackaging=jar \
+        -Dversion=$VERSION \
+        -Dusername=admin \
+        -Dpassword=$NEXUS_PASS \
+        -Dfile=target/$CI_PROJECT_NAME-$VERSION.jar
