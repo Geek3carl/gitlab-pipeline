@@ -2,7 +2,8 @@
   stage: package
   script:
     - echo -e "\e[33m--------测试环境构建--------\e[0m"
-    - go build -o $CI_JOB_NAME  -a -installsuffix cgo ./app
+    - go mod vendor
+    - go build -mod=vendor -o $CI_JOB_NAME  -a -installsuffix cgo ./app
     - pwd && ls -hl ./*
   timeout: 10m
   artifacts:
