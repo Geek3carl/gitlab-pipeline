@@ -9,6 +9,7 @@ golang-package-test:
   rules:
     - if: '$CI_COMMIT_REF_NAME == "test" || $CI_COMMIT_TAG =~ /^test-\d{8}$/'
       when: always
+    - when: never
 
 golang-package-prod:
   extends: .golang-mod-package
@@ -18,6 +19,7 @@ golang-package-prod:
   rules:
     - if: '$CI_COMMIT_TAG =~ /^prod-v\d+\.\d+\.\d+$/ && $CI_PIPELINE_SOURCE == "trigger"'
       when: manual
+    - when: never
   release:
     tag_name: "$CI_COMMIT_TAG"
     ref: "$CI_COMMIT_REF_NAME"
