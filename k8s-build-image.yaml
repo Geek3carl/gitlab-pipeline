@@ -1,5 +1,6 @@
 build-k8s-image:
   stage: build-k8s-image
+  extends: .qsc-registry-login 
   script:
     - time=$(date +%Y%m%d%H%M%S)
     - tag=${CI_COMMIT_TAG:-$CI_COMMIT_BRANCH}
