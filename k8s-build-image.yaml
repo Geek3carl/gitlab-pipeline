@@ -1,3 +1,5 @@
+include:
+  - local: 'docker-login.yml'
 build-k8s-image:
   stage: build-k8s-image
   extends: .qsc-registry-login 
