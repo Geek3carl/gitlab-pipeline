@@ -1,0 +1,2 @@
+before_script:
+  - git config --global url."https://${CI_USERNAME}:${CI_PASSWORD}@code.qschou.com".insteadOf "https://code.qschou.com"
