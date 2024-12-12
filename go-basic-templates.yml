@@ -1,5 +1,6 @@
 .default-golang-package:
   stage: package
+  image: reg.qschou.com/ops/golang:1.13.15
   script:
     - echo -e "\e[33m--------测试环境构建--------\e[0m"
     - go build -o $CI_JOB_NAME  -a -installsuffix cgo ./app
@@ -14,6 +15,7 @@
     - when: never
 .golang-mod-package:
   stage: package
+  image: reg.qschou.com/ops/golang:1.13.15
   script:
     - echo -e "\e[35m=====================开始生产环境构建======================\e[0m"
     - go build -o $CI_JOB_NAME / ./app
