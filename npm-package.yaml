@@ -2,6 +2,7 @@ include:
   - local: 'npm-basic-templates.yml'
 test-package: 
   extends: .default-npm-package
+  stage: package
   script:
     - cnpm run test
   artifacts:
@@ -14,6 +15,7 @@ test-package:
 
 prod-package: 
   extends: .default-npm-package
+  stage: package
   script:
     - cnpm run prod 
   artifacts:
