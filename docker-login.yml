@@ -1,8 +1,8 @@
 .qsc-registry-login:
   image: reg.qschou.com/ops/docker:27.4.0-dind
-  services:
-    - name: reg.qschou.com/ops/docker:27.4.0-dind 
-      command: ["--host=tcp://0.0.0.0:2375", "--host=unix:///var/run/docker.sock"]
-      alias: docker
+  #services:
+  #  - name: reg.qschou.com/ops/docker:27.4.0-dind 
+  #    command: ["--host=tcp://0.0.0.0:2375", "--host=unix:///var/run/docker.sock"]
+  #    alias: docker
   script: 
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
