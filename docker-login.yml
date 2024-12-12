@@ -1,4 +1,5 @@
 .qsc-registry-login:
+  image: reg.qschou.com/ops/docker:27.4.0-dind
   services:
     - reg.qschou.com/ops/docker:27.4.0-dind 
   script: 
