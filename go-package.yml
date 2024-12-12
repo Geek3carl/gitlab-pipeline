@@ -1,44 +1,34 @@
+include:
+  - local: 'go-basic-templates.yml'
 golang-package-test:
+  extends: .default-golang-package
   stage: package
   script:
     - echo -e "\e[33m--------测试环境构建--------\e[0m"
-    - go build -o $CI_JOB_NAME -a -installsuffix cgo ./app
-    - pwd && ls -hl ./*
   artifacts:
     expire_in: 10 min
     name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
-    untracked: false
-    paths:
-      - /
-    when: on_success
   rules:
     - if: '$CI_COMMIT_REF_NAME == "test" || $CI_COMMIT_TAG =~ /^test-\d{8}$/'
       when: always
-    - when: never
+    - when: never  # 默认行为
 
 golang-package-prod:
+  extends: .golang-mod-package
   stage: package
   script:
     - echo -e "\e[35m--------生产环境构建--------\e[0m"
-    - go mod tidy
-    - go mod vendor
-    - go build -o $CI_JOB_NAME -a -installsuffix cgo ./app
-    - pwd && ls -hl ./*
-  timeout: 3m
   artifacts:
     expire_in: 90 min
     name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
-    untracked: false
-    paths:
-      - /
-    when: on_success
   rules:
     - if: '$CI_COMMIT_TAG =~ /^prod-v\d+\.\d+\.\d+$/ && $CI_PIPELINE_SOURCE == "trigger"'
       when: manual
-    - when: never
+    - when: never  # 默认行为
   release:
     tag_name: "$CI_COMMIT_TAG"
     ref: "$CI_COMMIT_REF_NAME"
     name: "Release for $CI_COMMIT_TAG"
     description: |
       $(cat RELEASE_NOTES.md)
+
