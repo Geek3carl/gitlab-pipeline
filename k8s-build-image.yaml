@@ -5,7 +5,8 @@ build-k8s-image:
   extends: .qsc-registry-login 
   script:
     - sleep 15
-    - nslookup docker
+    - env
+    - ps -ef
     - curl http://docker:2375/_ping
     - time=$(date +%Y%m%d%H%M%S)
     - tag=${CI_COMMIT_TAG:-$CI_COMMIT_BRANCH}
