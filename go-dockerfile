@@ -1,0 +1,2 @@
+FROM reg.qschou.com/base/centos:7
+COPY ./$CI_PROJECT_NAME /
