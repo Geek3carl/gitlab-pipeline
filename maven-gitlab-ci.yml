@@ -1,7 +1,7 @@
 default:
     tags:
       - dev-ops 
-image: $CI_REGISTRY/ops/qsc-maven:ali-v3  #特别需求可通过TAG指定镜像
+image: $CI_REGISTRY/ops/base:1.8.0-health-mall  #特别需求可通过TAG指定镜像
 timeout: 3m
 include:
   - project: 'opertations/gitlabci-templates'
