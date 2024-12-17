@@ -1,8 +1,8 @@
 default:
   tags:
     - nodejs18 
-  image: $CI_REGISTRY/ops/npm-node:latest
-  timeout: 3m
+  timeout: 9m
+image: $CI_REGISTRY/ops/npm-node:latest
 include:
   - project: 'opertations/gitlabci-templates'
     ref: main
@@ -14,10 +14,18 @@ stages:
   - package
   - build-k8s-image
 
+#=============以下为打包所用参数===========
 variables:
+  #开发可选参数,可自行更改
   NPM_REGISTRY: "https://registry.npm.taobao.org"
   CI_PROJECT_DIST: "dist"
   ARTIFACTS_PATH: "target"  #maven打包后jar包存放位置,当前目录写.
+  #运维使用参数,不会变更,不要更改
+  DOCKER_HOST: "tcp://docker:2375"
+  DOCKER_TLS_CERTDIR: ""
+  CI_REGISTRY_USER: "admin" 
+  CI_REGISTRY: "reg.qschou.com" 
+  CI_USERNAME: "root"
 
 clean:
   stage: .pre
