@@ -20,7 +20,7 @@ variables:
   #开发可选参数,可自行更改
   MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
-  ARTIFACTS_PATH: "target/"  #maven打包后jar包存放位置
+  ARTIFACTS_PATH: "target/"  #maven打包后jar包存放位置,当前目录写.
   #运维使用参数,不会变更,不要更改
   DOCKER_HOST: "tcp://docker:2375"
   DOCKER_TLS_CERTDIR: ""
