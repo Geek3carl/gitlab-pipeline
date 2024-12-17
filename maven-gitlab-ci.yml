@@ -1,6 +1,6 @@
 default:
     tags:
-      - jdk8 
+      - dev-ops 
 image: $CI_REGISTRY/ops/qsc-maven:ali-v3
 timeout: 3m
 include:
