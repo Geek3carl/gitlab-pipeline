@@ -1,13 +1,12 @@
 default:
   tags:
     - nodejs18 
-image: $CI_REGISTRY/ops/npm-node:latest
-timeout: 3m
+  image: $CI_REGISTRY/ops/npm-node:latest
+  timeout: 3m
 include:
   - project: 'opertations/gitlabci-templates'
     ref: main
     file:
-      - 'docker-login.yml'
       - 'npm-package.yaml'
       - 'k8s-build-image.yaml'
 
@@ -18,6 +17,7 @@ stages:
 variables:
   NPM_REGISTRY: "https://registry.npm.taobao.org"
   CI_PROJECT_DIST: "dist"
+  ARTIFACTS_PATH: "target"  #maven打包后jar包存放位置,当前目录写.
 
 clean:
   stage: .pre

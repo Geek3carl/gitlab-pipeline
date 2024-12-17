@@ -2,7 +2,7 @@ maven-package-test:
   stage: package
   script:
     #- mvn clean package -Dmaven.test.skip=true -P test 
-    - mvn clean package -Dmaven.test.skip=true -P $CI_COMMIT_REF_NAME 
+    - mvn package -Dmaven.test.skip=true -P $CI_COMMIT_REF_NAME 
     - pwd && ls -hl ./* 
   timeout: 5m
   artifacts:
@@ -21,7 +21,7 @@ maven-package-test:
 maven-package-prod:
   stage: package
   script:
-    - mvn clean package -Dmaven.test.skip=true -P prod 
+    - mvn package -Dmaven.test.skip=true -P prod 
     - pwd && ls -hl ./* 
   timeout: 5m
   artifacts:
