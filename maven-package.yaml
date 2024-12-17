@@ -7,7 +7,8 @@ maven-package-test:
   timeout: 5m
   artifacts:
     expire_in: 10 min
-    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    #name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    name: "$CI_JOB_NAME"
     when: on_success
     untracked: false
     paths:
@@ -25,7 +26,7 @@ maven-package-prod:
   timeout: 5m
   artifacts:
     expire_in: 90 min
-    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    name: "$CI_JOB_NAME"
     when: on_success
     untracked: false
     paths:
