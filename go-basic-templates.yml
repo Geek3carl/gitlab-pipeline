@@ -1,14 +1,14 @@
 .golang-vendor-package:
   stage: package
   script:
-    - echo -e "\e[33m--------测试环境构建--------\e[0m"
-    - go build -mod=vendor -o $CI_PROJECT_NAME -a -installsuffix cgo ./app
+    - echo -e "\e[33m--------golang vendor构建--------\e[0m"
+    - go build -o $CI_PROJECT_NAME -a -installsuffix cgo ./app
     - pwd && ls -hl ./*
   timeout: 10m
   artifacts:
     untracked: false
     paths:
-      - ./$CI_PROJECT_NAME
+      - ./app/$CI_PROJECT_NAME
     when: on_success
   rules:
     - when: never
@@ -16,7 +16,7 @@
 .golang-mod-package:
   stage: package
   script:
-    - echo -e "\e[35m=====================开始生产环境构建======================\e[0m"
+    - echo -e "\e[35m=====================golang mod构建======================\e[0m"
     - go mod tidy 
     - go mod vendor
     - go build -o $CI_PROJECT_NAME -a -installsuffix cgo ./
