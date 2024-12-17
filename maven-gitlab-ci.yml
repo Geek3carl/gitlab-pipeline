@@ -2,7 +2,7 @@ default:
     tags:
       - dev-ops 
     timeout: 3m
-image: $CI_REGISTRY/ops/base:1.8.0 #特别需求可通过TAG指定镜像
+image: $CI_REGISTRY/base/java:1.8.0 #特别需求可通过TAG指定镜像
 include:
   - project: 'opertations/gitlabci-templates'
     ref: main
