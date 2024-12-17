@@ -1,28 +1,32 @@
 default:
   tags:
-    - go1.13 
-#image: reg.qschou.com/ops/golang:1.13.15 #特别需求可指定镜像
-image: $CI_REGISTRY/ops/qsc-maven:ali-v3
-timeout: 3m
+    - dev-ops 
+  timeout: 10m #整个打包流程限定超时时间
+image: $CI_REGISTRY/ops/golang:1.14.2 #特别需求可通过TAG指定镜像
 include:
   - project: 'opertations/gitlabci-templates'
     ref: main
     file: 
-      - 'docker-login.yml'
-      - 'go-package.yaml'
+      - 'qsc-gitlab-login.yml'
+      - 'go-vendor-package.yml'  #go mod方式打包项目可将vendor替换为mod go-mod-package.yml
       - 'k8s-build-image.yaml'
 stages:
   - package
   - build-k8s-image
-
+#=============以下为打包所用参数===========
 variables:
-  GO111MODULE: "on"
-  GOPROXY: "https://proxy.golang.org,direct"
+  #开发可选参数,可自行更改
+  CGO_ENABLED: "0"
+  GOPRIVATE: "code.qschou.com/*"
+  GO111MODULE: ""
+  GOPROXY: "https://goproxy.cn,direct"
   GOMODCACHE: "$CI_PROJECT_DIR/.gomodcache"
-  GOBIN: "$CI_PROJECT_DIR/.gobin"
+  #运维使用参数,不会变更,不要更改
+  DOCKER_HOST: "tcp://docker:2375"
+  DOCKER_TLS_CERTDIR: ""
+  CI_REGISTRY_USER: "admin" 
+  CI_REGISTRY: "reg.qschou.com" 
+  CI_USERNAME: "root"
 
-clean:
-  stage: .pre
-  script:
-    - go clean -modcache
-  timeout: 10s 
+
+

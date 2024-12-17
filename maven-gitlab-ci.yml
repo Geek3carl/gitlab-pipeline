@@ -1,7 +1,7 @@
 default:
     tags:
       - dev-ops 
-image: $CI_REGISTRY/ops/qsc-maven:ali-v3
+image: $CI_REGISTRY/ops/qsc-maven:ali-v3  #特别需求可通过TAG指定镜像
 timeout: 3m
 include:
   - project: 'opertations/gitlabci-templates'
@@ -15,10 +15,19 @@ stages:
   - package
   - build-k8s-image
 
+#以下为打包所用参数,其中开发可选参数开发者可根据需要自行更改
 variables:
+  #开发可选参数,可自行更改
   MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  ARTIFACTS_PATH: "target/"  #maven打包后jar包存放位置
+  #运维使用参数,不会变更,不要更改
+  DOCKER_HOST: "tcp://docker:2375"
+  DOCKER_TLS_CERTDIR: ""
+  CI_REGISTRY_USER: "admin" 
+  CI_REGISTRY: "reg.qschou.com" 
 
+#清理缓存
 clean:
   stage: .pre
   script: mvn clean -U
