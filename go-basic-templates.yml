@@ -10,6 +10,8 @@
     paths:
       #- ./app/$CI_PROJECT_NAME
       - ./app
+    exclude:
+      - .git/**  # 排除 .git 文件夹
     when: on_success
   rules:
     - when: never
@@ -27,6 +29,8 @@
     untracked: false
     paths:
       - ./
+    exclude:
+      - .git/**  # 排除 .git 文件夹
     when: on_success
   rules:
     - when: never
