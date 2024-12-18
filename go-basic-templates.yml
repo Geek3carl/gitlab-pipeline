@@ -23,7 +23,7 @@
     - go mod tidy 
     - go mod vendor
     - go build -o $CI_PROJECT_NAME -a -installsuffix cgo ./
-    - pwd && ls -hl ./*
+    - pwd && du -sh * 
   timeout: 10m
   artifacts:
     untracked: false
