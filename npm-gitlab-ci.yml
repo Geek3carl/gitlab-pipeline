@@ -7,6 +7,7 @@ include:
   - project: 'opertations/gitlabci-templates'
     ref: main
     file:
+      - 'qsc-gitlab-login.yml'
       - 'npm-package.yaml'
       - 'k8s-build-image.yaml'
 

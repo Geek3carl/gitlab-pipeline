@@ -8,7 +8,8 @@
   artifacts:
     untracked: false
     paths:
-      - ./app/$CI_PROJECT_NAME
+      #- ./app/$CI_PROJECT_NAME
+      - ./app
     when: on_success
   rules:
     - when: never
@@ -25,7 +26,7 @@
   artifacts:
     untracked: false
     paths:
-      - ./$CI_PROJECT_NAME
+      - ./
     when: on_success
   rules:
     - when: never
