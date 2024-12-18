@@ -7,7 +7,6 @@ build-k8s-image:
       alias: docker
   script:
     - sleep 30
-    #- echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
     - time=$(date +%Y%m%d%H%M%S)
     - tag=${CI_COMMIT_TAG:-$CI_COMMIT_BRANCH}
     - docker build -t $CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$tag-$CI_COMMIT_SHORT_SHA-$time .
