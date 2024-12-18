@@ -8,7 +8,6 @@ include:
     ref: main
     file: 
       - 'qsc-gitlab-login.yml'
-      - 'docker-login.yml'
       - 'go-vendor-package.yml'  #go mod方式打包项目可将vendor替换为mod go-mod-package.yml
       - 'k8s-build-image.yaml'
 stages:
