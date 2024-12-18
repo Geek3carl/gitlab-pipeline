@@ -1,6 +1,8 @@
+include:
+  - local: 'docker-login.yml'
 build-k8s-image:
   stage: build-k8s-image
-  image: $CI_REGISTRY/ops/docker:27.4.0-dind
+  extends: .qsc-registry-login
   services:
     - name: reg.qschou.com/ops/docker:27.4.0-dind
       command: ["--host=tcp://0.0.0.0:2375", "--host=unix:///var/run/docker.sock"]
