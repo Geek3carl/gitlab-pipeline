@@ -29,7 +29,8 @@
   artifacts:
     untracked: false
     paths:
-      - ./
+      - ./$CI_PROJECT_NAME
+      - configs            # 上传配置文件
     exclude:
       - .git/**  # 排除 .git 文件夹
       - vendor/** 
