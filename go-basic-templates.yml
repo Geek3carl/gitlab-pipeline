@@ -12,7 +12,7 @@
       - ./app
     exclude:
       - .git/**  # 排除 .git 文件夹
-      - vendor 
+      - vendor/** 
     when: on_success
   rules:
     - when: never
@@ -32,7 +32,7 @@
       - ./
     exclude:
       - .git/**  # 排除 .git 文件夹
-      - vendor 
+      - vendor/** 
     when: on_success
   rules:
     - when: never
