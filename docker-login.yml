@@ -1,4 +1,4 @@
 .qsc-registry-login:
-  image: reg.qschou.com/ops/docker:27.4.0-dind
+  image: reg.qschou.com/ops/docker:27.4.0-dind-timezone 
   before_script: 
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin

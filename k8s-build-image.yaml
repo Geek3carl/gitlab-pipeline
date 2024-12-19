@@ -4,7 +4,7 @@ build-k8s-image:
   stage: build-k8s-image
   extends: .qsc-registry-login
   services:
-    - name: reg.qschou.com/ops/docker:27.4.0-dind
+    - name: reg.qschou.com/ops/docker:27.4.0-dind-timezone 
       command: ["--host=tcp://0.0.0.0:2375", "--host=unix:///var/run/docker.sock"]
       alias: docker
   script:
