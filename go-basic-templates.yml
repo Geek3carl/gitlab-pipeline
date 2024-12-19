@@ -2,6 +2,7 @@
   stage: package
   script:
     - echo -e "\e[33m--------golang vendor构建--------\e[0m"
+    - pwd && ls -al
     - go build -o $CI_PROJECT_NAME -a -installsuffix cgo ./app
     - pwd && ls -hl ./*
   timeout: 10m
