@@ -1,20 +1,19 @@
 .golang-vendor-package:
   stage: package
-  working_directory: $GOPATH/src/code.qschou.com
   script:
     - echo -e "\e[33m--------golang vendor构建--------\e[0m"
     - pwd && ls -al
     - go env
-    #- mkdir -p $GOPATH/src/code.qschou.com/$CI_PROJECT_NAMESPACE/ 
-    #- ln -s $CI_PROJECT_DIR $GOPATH/src/code.qschou.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME && ls -al $GOPATH/src/code.qschou.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
-    #- cd $GOPATH/src/code.qschou.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+    - mkdir -p $GOPATH/src/code.qschou.com/$CI_PROJECT_NAMESPACE/ 
+    - ln -s $CI_PROJECT_DIR $GOPATH/src/code.qschou.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME && ls -al $GOPATH/src/code.qschou.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+    - cd $GOPATH/src/code.qschou.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
     - go build -o $CI_PROJECT_NAME -a -installsuffix cgo ./app
     - pwd && ls -hl ./*
   timeout: 10m
   artifacts:
     untracked: false
     paths:
-      - ./ 
+      - $GOPATH/src/code.qschou.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME 
     exclude:
       - .git/**  # 排除 .git 文件夹
       - vendor/** 
