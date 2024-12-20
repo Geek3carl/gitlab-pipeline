@@ -5,7 +5,7 @@
     - pwd && ls -al
     - go env
     - mkdir -p /usr/local/go/src/code.qschou.com/$CI_PROJECT_NAMESPACE/ 
-    - ln -s /home/gitlab-runner/builds/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME /usr/local/go/src/code.qschou.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+    - ln -s /home/gitlab-runner/builds/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME /usr/local/go/src/code.qschou.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME && ls -al /usr/local/go/src/code.qschou.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
     - go build -o $CI_PROJECT_NAME -a -installsuffix cgo ./app
     - pwd && ls -hl ./*
   timeout: 10m
