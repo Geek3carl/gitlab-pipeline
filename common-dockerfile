@@ -1,0 +1,3 @@
+FROM reg.qschou.com/base/centos:7
+COPY ./ /
+
